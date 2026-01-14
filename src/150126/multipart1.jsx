@@ -1,3 +1,5 @@
+// this is for an push to github for only c an v 
+
 import React, { Component } from "react";
 
 class MultiPart extends Component {
@@ -48,7 +50,6 @@ class MultiPart extends Component {
           <input
             type="text"
             value={t2}
-            
             placeholder="Last Name"
             onChange={(e) => this.setState({ t2: e.target.value })}
           />
@@ -149,3 +150,54 @@ class MultiPart extends Component {
             <input
               type="date"
               value={t8}
+              onChange={(e) => this.setState({ t8: e.target.value })}
+              style={{ marginLeft: "10px" }}
+            />
+          </label>
+
+          <br />
+
+          <input
+            type="text"
+            value={t9}
+            placeholder="Mobile Number"
+            onChange={(e) => this.setState({ t9: e.target.value })}
+          />
+          <br />
+        </div>
+
+        <div>
+          <button disabled={index === 2} onClick={this.onclicknext}>
+            Next
+          </button>
+
+          <button disabled={index === 0} onClick={this.onclickprevious}>
+            Previous
+          </button>
+        </div>
+
+        <hr />
+
+        <div>
+          <div>{t1}</div>
+          <div>{t2}</div>
+          <div>{t3}</div>
+        </div>
+
+        <div>
+          <div>{t4}</div>
+          <div>{t5}</div>
+          <div>{t6}</div>
+        </div>
+
+        <div>
+          <div>{t7}</div>
+          <div>{t8}</div>
+          <div>{t9}</div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default MultiPart;
