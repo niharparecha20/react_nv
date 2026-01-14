@@ -48,3 +48,104 @@ class MultiPart extends Component {
           <input
             type="text"
             value={t2}
+            
+            placeholder="Last Name"
+            onChange={(e) => this.setState({ t2: e.target.value })}
+          />
+          <br />
+
+          <input
+            type="text"
+            value={t3}
+            placeholder="Mobile Number"
+            onChange={(e) => this.setState({ t3: e.target.value })}
+          />
+          <br />
+        </div>
+
+        <div style={{ display: index === 1 ? "" : "none" }}>
+          <div style={{ display: index === 1 ? "" : "none" }}>
+            <h1>Part 2</h1>
+
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                value="Male"
+                checked={t4 === "Male"}
+                onChange={(e) => this.setState({ t4: e.target.value })}
+              />
+              Male
+            </label>
+
+            <label style={{ marginLeft: "10px" }}>
+              <input
+                type="radio"
+                name="gender"
+                value="Female"
+                checked={t4 === "Female"}
+                onChange={(e) => this.setState({ t4: e.target.value })}
+              />
+              Female
+            </label>
+
+            <br />
+
+            <select
+              value={t5}
+              onChange={(e) => this.setState({ t5: e.target.value })}
+            >
+              <option value="">Select City</option>
+              <option value="Ahmedabad">Ahmedabad</option>
+              <option value="Surat">Surat</option>
+              <option value="Rajkot">Rajkot</option>
+              <option value="Vadodara">Vadodara</option>
+            </select>
+
+            <br />
+
+            <input
+              type="text"
+              list="branchList"
+              placeholder="Branch"
+              value={t6}
+              onChange={(e) => this.setState({ t6: e.target.value })}
+            />
+
+            <datalist id="branchList">
+              <option value="CE" />
+              <option value="IT" />
+            </datalist>
+          </div>
+
+          <h1>Part 3</h1>
+
+          <input
+            type="text"
+            value={t7}
+            placeholder="First Name"
+            onChange={(e) => this.setState({ t7: e.target.value })}
+          />
+          <label>
+            Choose Color:
+            <input
+              type="color"
+              value={t7}
+              onChange={(e) => this.setState({ t7: e.target.value })}
+              style={{ marginLeft: "10px" }}
+            />
+          </label>
+
+          <br />
+
+          <input
+            type="text"
+            value={t8}
+            placeholder="Last Name"
+            onChange={(e) => this.setState({ t8: e.target.value })}
+          />
+          <label>
+            Select Date:
+            <input
+              type="date"
+              value={t8}
