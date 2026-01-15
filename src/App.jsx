@@ -7,12 +7,12 @@ import StateExample from './CE1012026/state_exercise'*/
 //import RegistraionForm from './CE1012026/state_exercise'
 //import Contactbook from './CE060120206/contactbook';
 //import Multipart from './130126/multipart';
-import practice from './CE80126/practice';
+import ProductSelector from './CE80126/practice';
 function App() {
 
   return (
     <>
-      {/* {"hello world"
+      {/* {"helilo world"
       <FirstClass/>
       <CardComponent/>
       <StateExample/>  
@@ -22,7 +22,7 @@ function App() {
       <RegistraionForm/>
       <Contactbook/>
        <Multipart/>*/}
-       <practice/>
+       <ProductSelector/>
        
       
         </>

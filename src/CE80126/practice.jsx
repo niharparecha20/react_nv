@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class practice extends Component {
+class ProductSelector extends Component {
   constructor(props) {
     super(props);
 
@@ -80,4 +80,4 @@ class practice extends Component {
   }
 }
 
-export default practice;
+export default ProductSelector;
