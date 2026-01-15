@@ -1,168 +1,83 @@
 import React, { Component } from "react";
 
-class ContactBook extends Component {
+class practice extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      contacts: [],
-      fname: "",
-      lname: "",
-      phone: "",
 
-      editId: null,
-      editFname: "",
-      editLname: "",
-      editPhone: "",
+    this.state = {
+      quantity: 1,
+      selectedPrice: 100,
+      selectedItem: "Item 1",
+      items: [
+        { label: "Item 1", price: 100 },
+        { label: "Item 2", price: 200 },
+        { label: "Item 3", price: 300 },
+      ],
     };
   }
 
-  handlefnameChange = (e) => this.setState({ fname: e.target.value });
-  handlelnameChange = (e) => this.setState({ lname: e.target.value });
-  handlephoneChange = (e) => this.setState({ phone: e.target.value });
+  handleItemChange = (e) => {
+    const price = Number(e.target.value);
+    const item = this.state.items.find(i => i.price === price);
 
-  addContact = () => {
-    const { fname, lname, phone } = this.state;
-    if (!fname || !lname || !phone) return;
-
-    const newContact = {
-      id: Date.now(),
-      fname,
-      lname,
-      phone,
-      visible: false,
-    };
-
-    this.setState((prev) => ({
-      contacts: [newContact, ...prev.contacts],
-      fname: "",
-      lname: "",
-      phone: "",
-    }));
-  };
-
-  deleteContact = (id) => {
-    this.setState((prev) => ({
-      contacts: prev.contacts.filter((c) => c.id !== id),
-    }));
-  };
-
-  toggleView = (id) => {
-    this.setState((prev) => ({
-      contacts: prev.contacts.map((c) =>
-        c.id === id ? { ...c, visible: !c.visible } : c
-      ),
-    }));
-  };
-
-  startEdit = (contact) => {
     this.setState({
-      editId: contact.id,
-      editFname: contact.fname,
-      editLname: contact.lname,
-      editPhone: contact.phone,
+      selectedPrice: price,
+      selectedItem: item.label,
     });
   };
 
-  saveUpdate = () => {
-    this.setState((prev) => ({
-      contacts: prev.contacts.map((c) =>
-        c.id === prev.editId
-          ? {
-              ...c,
-              fname: prev.editFname,
-              lname: prev.editLname,
-              phone: prev.editPhone,
-            }
-          : c
-      ),
-      editId: null,
-      editFname: "",
-      editLname: "",
-      editPhone: "",
+  increaseQuantity = () => {
+    this.setState((prevState) => ({
+      quantity: prevState.quantity + 1,
+    }));
+  };
+
+  decreaseQuantity = () => {
+    this.setState((prevState) => ({
+      quantity: prevState.quantity - 1,
     }));
   };
 
   render() {
-    const {
-      contacts,
-      fname,
-      lname,
-      phone,
-      editId,
-      editFname,
-      editLname,
-      editPhone,
-    } = this.state;
+    const { quantity, selectedPrice, items } = this.state;
+    const totalPrice = selectedPrice * quantity;
 
     return (
-      <div style={{ padding: "20px", maxWidth: "500px" }}>
-        <h2>📒 Contact Book</h2>
+      <div style={{ padding: "20px", width: "300px" }}>
+        <h3>Product Selector</h3>
 
-        <input
-          placeholder="First Name"
-          value={fname}
-          onChange={this.handlefnameChange}
-        />
-        <br />
+        <select onChange={this.handleItemChange}>
+          {items.map((item, index) => (
+            <option key={index} value={item.price}>
+              {item.label} - ₹{item.price}
+            </option>
+          ))}
+        </select>
 
-        <input
-          placeholder="Last Name"
-          value={lname}
-          onChange={this.handlelnameChange}
-        />
-        <br />
+        <div style={{ marginTop: "10px" }}>
+          <button
+            onClick={this.decreaseQuantity}
+            disabled={quantity === 0}
+          >
+            -
+          </button>
 
-        <input
-          placeholder="Phone"
-          value={phone}
-          onChange={this.handlephoneChange}
-        />
-        <br />
+          <span style={{ margin: "0 10px" }}>{quantity}</span>
 
-        <button onClick={this.addContact}>Add Contact</button>
+          <button
+            onClick={this.increaseQuantity}
+            disabled={quantity > 10}
+          >
+            +
+          </button>
+        </div>
 
-        <hr />
-
-        {contacts.map((c) => (
-          <div key={c.id} style={{ marginBottom: "10px" }}>
-            <strong>
-              {c.fname} {c.lname}
-            </strong>
-
-            <button onClick={() => this.toggleView(c.id)}>View</button>
-            <button onClick={() => this.startEdit(c)}>Edit</button>
-            <button onClick={() => this.deleteContact(c.id)}>Delete</button>
-
-            {c.visible && <div>📞 {c.phone}</div>}
-
-            {editId === c.id && (
-              <div>
-                <input
-                  value={editFname}
-                  onChange={(e) =>
-                    this.setState({ editFname: e.target.value })
-                  }
-                />
-                <input
-                  value={editLname}
-                  onChange={(e) =>
-                    this.setState({ editLname: e.target.value })
-                  }
-                />
-                <input
-                  value={editPhone}
-                  onChange={(e) =>
-                    this.setState({ editPhone: e.target.value })
-                  }
-                />
-                <button onClick={this.saveUpdate}>Save</button>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+        <h4 style={{ marginTop: "10px" }}>
+          Total Price: ₹{totalPrice}
+        </h4>
+      </div>    
     );
   }
 }
 
-export default ContactBook;
+export default practice;
