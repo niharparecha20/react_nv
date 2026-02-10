@@ -1,14 +1,14 @@
-import MultiObjects from "./150126/multiobject";
-import multiobject from "./150126/multiobject"; 
+import ProductSelector from "/components/ProductSelector";
+
 function App() {
 
   return (
     <>
-    <MultiObjects/>
+    
+    <ProductSelector/>
 
       
    </>
   );
 }
-
 export default App;
