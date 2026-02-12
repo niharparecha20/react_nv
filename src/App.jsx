@@ -1,14 +1,12 @@
-import ProductSelector from "/components/ProductSelector";
+import React from "react";
+import ShoppingCart from "./10226/shoppingcart";
 
 function App() {
-
   return (
-    <>
-    
-    <ProductSelector/>
-
-      
-   </>
+    <div className="ShoppingCartApp">
+      <ShoppingCart />
+    </div>
   );
 }
+
 export default App;
